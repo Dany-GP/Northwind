@@ -1,0 +1,18 @@
+.bg-dark{
+    background-color: #212529;
+}
+
+.btn-orange{
+    background-color: #212529 !important;
+    border: 0.1rem #FF5001 solid !important;
+}
+
+.btn-orange:hover{
+    background-color: #FF5001 !important;
+    border: 0.1rem #EFEFEF solid !important;
+    color: #212529 !important;
+}
+
+.txt-white{
+    color: #EFEFEF !important;
+}
