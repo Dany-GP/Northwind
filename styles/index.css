@@ -5,12 +5,24 @@
 }
 
 .bg-dark {
-    background-color: #212529;
+    background-color: #343a40;
 }
 
 .btn-orange {
-    background-color: #212529 !important;
+    background-color: #343a40 !important;
     border: 0.1rem #FF5001 solid !important;
+}
+
+.btn-orange-no-border{
+    background-color: #343a40 !important;
+    border: 0.1rem #FF5001 solid !important;
+}
+.btn-orange-no-border:hover{
+    background-color: #FF5001 !important;
+    color: #212529 !important;
+    transition: 2s all;
+    transform: scale(1, 1);
+    cursor: pointer;
 }
 
 .btn-orange:hover {
@@ -517,3 +529,31 @@ p {
     background: #FA6742;
     border-color: #FA6742;
 }
+
+.contenedor-principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.carousel-caption h1{
+    color: #EFEFEF !important;
+}
+
+.carousel-caption h2{
+    font-size: 3rem !important;
+    color: #EFEFEF !important;
+}
+
+p{
+    font-size: 1.5rem;
+}
+
+.stroke {
+    color: #000000;
+    text-shadow: -1px -1px 1px rgb(255, 255, 255), 1px 1px 1px #000, -1px 1px 1px #000, 1px -1px 1px #000;
+    -webkit-text-fill-color: #ffffff;
+}
+
