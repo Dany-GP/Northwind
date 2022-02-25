@@ -11,29 +11,77 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>Document</title>
+    <link rel="shortcut icon" href="img/wolf-logo.png">
+    <title>NortWind</title>
 </head>
 
 <body class="bg-dark">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
 
-            <span class="fs-4 txt-white border border-1 rounded p-1 mx-3"> 
+            <span class="fs-4 txt-white border border-1 rounded p-1 mx-3 btn-orange-no-border"> 
             <strong class="">North</strong>Wind
             <img src="img/wolf-logo.png" class="logo">
           </span>
         </a>
 
         <ul class="nav nav-pills">
-            <li class="nav-item"><a href="#" class="nav-link active btn-orange txt-white rounded-pill" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link txt-white">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link txt-white">Pricing</a></li>
-            <li class="nav-item"><a href="#" class="nav-link txt-white">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link txt-white">About</a></li>
+            <li class="nav-item"><a href="#" class="nav-link active btn-orange txt-white rounded-pill" aria-current="page">Login</a></li>
+            <li class="nav-item"><a href="#" class="nav-link txt-white">Soporte</a></li>
+            <li class="nav-item"><a href="#precios" class="nav-link txt-white">Planes</a></li>
+            <li class="nav-item"><a href="#" class="nav-link txt-white">Acerca de</a></li>
         </ul>
     </header>
 
-    <div class="contenedor">
+    <div class="contenedor-principal mx-3 mt-5">
+      
+      
+        <div id="carouselExampleCaptions" class="carousel slide carousel-white" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="8000">
+              <img src="img/Combinacion-3.jpg" class="d-block w-100 img-fluid m-l-none rounded-3" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h2 class="stroke">Almacena todo lo que necesites</h2>
+                <p class="stroke">Ofrecemos planes variados para que puedas escoger el que se adapte a tus necesidades</p>
+              </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="8000">
+              <img src="img/nahuel.jpeg" class="d-block w-100 img-fluid rounded-3" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h2 class="stroke">Has que NorthWind sea parte de tu vida</h2>
+                <p class="stroke">Somos una empresa líder en la industria, nuestra mayor prioridad es que tú estés satisfecho con nuestro servicio</p>
+              </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="8000">
+              <img src="img/cajas-manchadas.jpg" class="d-block w-100 img-fluid rounded-3" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h2 class="stroke">No te preocupes por el traslado</h2>
+                <p class="stroke">Ofrecemos servicio a domicilio para que puedas almacenar tus pertenencias desde la comodidad de tu hogar o empresa</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      
+      
+
+    </div> 
+
+    
+
+    <div class="contenedor" id="precios">
         <div class="precio">
             <h2>Small business</h2>
             <i class="icon fa-regular fa-building fa-4x"></i>
@@ -260,6 +308,7 @@
         </div>
         <!-- End Back to top -->
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
 
