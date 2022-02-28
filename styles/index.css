@@ -13,11 +13,12 @@
     border: 0.1rem #FF5001 solid !important;
 }
 
-.btn-orange-no-border{
+.btn-orange-no-border {
     background-color: #343a40 !important;
     border: 0.1rem #FF5001 solid !important;
 }
-.btn-orange-no-border:hover{
+
+.btn-orange-no-border:hover {
     background-color: #FF5001 !important;
     color: #212529 !important;
     transition: 2s all;
@@ -78,6 +79,7 @@ body {
     display: block;
     margin-bottom: 20px;
 }
+
 .carse {
     width: 95%;
     max-width: 105em;
@@ -95,6 +97,7 @@ body {
     font-size: 30px;
     margin-bottom: 35px;
 }
+
 .icon {
     width: 64px;
     margin-bottom: 35px;
@@ -546,37 +549,34 @@ p {
     border-color: #FA6742;
 }
 
-.contenedor-principal{
+.contenedor-principal {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
-
-.carousel-caption h1{
+.carousel-caption h1 {
     color: #ffffff !important;
 }
 
-.carousel-caption h2{
+.carousel-caption h2 {
     font-size: 3rem !important;
     color: #ffffff !important;
 }
 
-.col p{
+.col p {
     font-size: 1.5rem;
 }
 
 .stroke {
-    
     color: #ffffff;
-    text-shadow: 1px 1px 1px rgb(0, 0, 0) ;
+    text-shadow: 1px 1px 1px rgb(0, 0, 0);
 }
 
-.font-p{
+.font-p {
     font-size: 1.7rem;
 }
-
 
 .contenedor-medio {
     width: 95%;
@@ -594,16 +594,15 @@ p {
     flex-grow: 1;
 }
 
-.btn-primary{
+.btn-primary {
     background-color: #FF5001 !important;
 }
 
-.text-justify{
+.text-justify {
     text-align: justify !important;
 }
 
-.bg-orange{
+.bg-orange {
     background-color: #FF5001;
     color: #212529 !important;
 }
-
