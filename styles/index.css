@@ -539,21 +539,30 @@ p {
 
 
 .carousel-caption h1{
-    color: #EFEFEF !important;
+    color: #ffffff !important;
 }
 
 .carousel-caption h2{
     font-size: 3rem !important;
-    color: #EFEFEF !important;
+    color: #ffffff !important;
 }
 
-p{
+.col p{
     font-size: 1.5rem;
 }
 
 .stroke {
-    color: #000000;
-    text-shadow: -1px -1px 1px rgb(255, 255, 255), 1px 1px 1px #000, -1px 1px 1px #000, 1px -1px 1px #000;
-    -webkit-text-fill-color: #ffffff;
+    
+    color: #ffffff;
+
+    text-shadow: 1px 1px 1px rgb(0, 0, 0) ;
+}
+
+.contenedor-medio {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20rem !important;
 }
 
