@@ -570,9 +570,13 @@ p {
 .stroke {
     
     color: #ffffff;
-
     text-shadow: 1px 1px 1px rgb(0, 0, 0) ;
 }
+
+.font-p{
+    font-size: 1.7rem;
+}
+
 
 .contenedor-medio {
     width: 95%;
@@ -588,5 +592,18 @@ p {
     padding: 60px;
     text-align: left;
     flex-grow: 1;
+}
+
+.btn-primary{
+    background-color: #FF5001 !important;
+}
+
+.text-justify{
+    text-align: justify !important;
+}
+
+.bg-orange{
+    background-color: #FF5001;
+    color: #212529 !important;
 }
 
