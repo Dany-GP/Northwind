@@ -42,7 +42,7 @@ body {
 
 .contenedor {
     width: 95%;
-    max-width: 1000px;
+    max-width: 105em;
     margin: auto;
     height: 100vh;
     display: flex;
@@ -78,7 +78,23 @@ body {
     display: block;
     margin-bottom: 20px;
 }
+.carse {
+    width: 95%;
+    max-width: 105em;
+    margin: auto;
+    border: 1px solid #FF5001;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px 0px #FF5001;
+    padding: 60px;
+    text-align: left;
+    flex-grow: 1;
+    color: #EFEFEF;
+}
 
+.carse>p {
+    font-size: 30px;
+    margin-bottom: 35px;
+}
 .icon {
     width: 64px;
     margin-bottom: 35px;
@@ -559,10 +575,18 @@ p {
 }
 
 .contenedor-medio {
-    width: 100%;
+    width: 95%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     margin-top: 20rem !important;
+    max-width: 105em;
+    margin: auto;
+    border: 1px solid #FF5001;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px 0px #FF5001;
+    padding: 60px;
+    text-align: left;
+    flex-grow: 1;
 }
 
