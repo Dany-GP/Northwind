@@ -7,8 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
     <link rel="shortcut icon" href="img/Logotipo-500x500-px.png">
-    <title>NorthWind</title>
+    <style>.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+        color: rgb(255 255 255 / 90%);
+        
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+    cursor: default;
+    color: rgb(255 255 255 / 90%) !important;
+    border: 1px solid transparent;
+    background: transparent;
+    box-shadow: none;
+}
+.dataTables_wrapper .dataTables_length select {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: rgb(255 255 255 / 90%);
+    padding: 4px;
+}
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: transparent;
+    margin-left: 3px;
+    color: white;
+}
+table.dataTable thead .sorting {
+    background-image: url("../images/sort_both.png");
+    color: white;
+}
+</style>
+    <title>Almacenes</title>
 </head>
 
 <body class="bg-dark">
@@ -29,123 +62,149 @@
             <li class="nav-item"><a href="Almacenes1.html" class="nav-link txt-white">Almacenes</a></li>
             <li class="nav-item"><a href="operaciones1.html" class="nav-link txt-white">Operaciones</a></li>
             <li class="nav-item"><a href="#info" class="nav-link txt-white">Acerca de</a></li>
-            
         </ul>
     </header>
 
-    <!-- <div class="contenedor-principal mx-3 mt-5"> -->
-
-
-    <div id="carouselExampleCaptions" class="carousel slide carousel-white mx-3 my-5" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <div class="container my-5">
+        <div class="row">
+          <div class="col-10">
+            <h2>Movimientos</h2>
+            <p>Esta tabla contiene todas las operaciones realizadas de los almacenes</p>
+          </div>
+          <div class="col-2 text-end align-items-center">
+            <button class="btn btn-success" onclick="mostrarModal()">Agregar movimiento</button>
+          </div>
         </div>
-        <div class="carousel-inner align-items-center justify-content-center text-center">
-            <div class="carousel-item active " data-bs-interval="8000">
-                <img src="img/Combinacion-3-version-3.jpg" class=" img-fluid rounded-3" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h2 class="stroke" style="text-shadow: -2px -2px 1px #000, 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000;">Almacena todo lo que necesites</h2>
-                    <p class="stroke font-p" style="text-shadow: -2px -2px 1px #000, 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000;">Ofrecemos planes variados para que puedas escoger el que se adapte a tus necesidades</p>
+    
+    
+        <table id="tabla_1" class="table  table-striped display">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Tipo de movimiento</th>
+              <th>Almacén</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>22-03-2022</td>
+              <td>Entrada por compra</td>
+              <td>1</td>
+    
+            </tr>
+            <tr>
+              <td>22-03-2022</td>
+              <td>Salida por venta</td>
+              <td>3</td>
+    
+            </tr>
+            <tr>
+              <td>22-03-2022</td>
+              <td>Ajuste</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>22-03-2022</td>
+              <td>Traspaso</td>
+              <td>1->3</td>
+    
+            </tr>
+            <tr>
+              <td>22-03-2022</td>
+              <td>Entrada por compra</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>22-03-2022</td>
+              <td>Entrada por compra</td>
+              <td>1</td>
+            </tr>
+    
+          </tbody>
+        </table>
+      </div>
+    
+      <!-- Modal -->
+      <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="exampleModalLabel">Agregar movimiento</Nombre>
+              </h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="">
+                <select class="form-select" id="select" onchange="mostrarCampoInventario()" aria-label="Default select example">
+                  <option selected>Selecciona la operación</option>
+                  <option value="1">Entrada de compra</option>
+                  <option value="2">Salida por venta</option>
+                  <option value="3">Traspaso entre almacenes</option>
+                  <option value="3">Ajuste</option>
+                </select>
+                <label for="" class="form-label">Product ID</label>
+                <input type="number" class="form-control" placeholder="0">
+                <label for="" class="form-label">Número de productos</label>
+                <input type="number" class="form-control" placeholder="0">
+    
+                <div class="row">
+                  <div class="col">
+                    <label for="" class="form-label">Almacén de origen</label>
+                    <input type="number" class="form-control" placeholder="0">
+                  </div>
+                  <div class="col d-none" id="inv2">
+                    <label for="" class="form-label">Almacén de destino</label>
+                    <input type="number" class="form-control" placeholder="0">
+                  </div>
                 </div>
+              </form>
             </div>
-            <div class="carousel-item" data-bs-interval="8000">
-                <img src="img/nahuel.jpeg" class="img-fluid rounded-3" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h2 class="stroke" style="text-shadow: -2px -2px 1px #000, 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000;">Haz que NorthWind sea parte de tu vida</h2>
-                    <p class="stroke font-p" style="text-shadow: -2px -2px 1px #000, 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000;">Somos una empresa líder en la industria, nuestra mayor prioridad es que tú estés satisfecho con nuestro servicio</p>
-                </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary">Guardar cambios</button>
             </div>
-            <div class="carousel-item" data-bs-interval="8000">
-                <img src="img/cajas-manchadas.jpg" class=" img-fluid rounded-3" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h2 class="stroke" style="text-shadow: -2px -2px 1px #000, 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000;">No te preocupes por el traslado</h2>
-                    <p class="stroke font-p" style="text-shadow: -2px -2px 1px #000, 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000;">Ofrecemos servicio a domicilio para que puedas almacenar tus pertenencias desde la comodidad de tu hogar o empresa</p>
-                </div>
-            </div>
+          </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-    </div>
-
-
-
-    <!-- </div>  -->
-
-    <div class="contenedor-medio" id="info">
-        <div class="col mx-5">
-            <h1 class="fs-1 my-3  fs-1 fw-bold rounded-3 text-center">¿Sin espacio para tus cosas?... Nosotros lo guardamos por tí</h1>
-            <p class="text-justify">
-                Deja de preocuparte por el espacio para tus cosas, tus pertenencias estarán a salvo gracias a nuestra organización profesional.
-            </p>
-            <p class="text-justify">
-                NorthWind es una empresa de inventario dedicada al almacenamiento de los elementos de sus clientes. NorthWind se encarga de almacenar, empaquetar y transportar bienes de pequeñas dimensiones tanto para grandes empresas como para personas individuales
-                que requieren un espacio libre para sus cosas.
-            </p>
-            <p>
-                No importa la cantidad de espacio que necesites, comienza ahora mismo
-                <a href="#precios" class=" text-orange">Aquí</a>
-            </p>
-        </div>
-        <div class="col float-right">
-            <img class="img-fluid rounded-3 " src="img/factory.jpg">
-        </div>
-
-    </div>
-
-
-
-    <!------ CARACCTERISTICAS  Y SEGUIMINETO Y CONTROL---------->
-
-    <div class="row mx-5 my-5 ali contenedor-info">
-
-        <div class="col col-hover border-orange rounded-3 mx-5">
-            <div class="">
-
-                <H2 class="text-center fw-bold rounded-3 fs-1"> CARACTERISTICAS </H2>
-                <ul>
-                    <li>
-                        <h3> El inventario en sus canales de ventas y ubicaciones </h3>
-                    </li>
-                    <p class="text-justify"> Sincronización de inventario totalmente automatizada, a medida que cambian sus niveles de inventario, Veeqo lo equilibra en sus canales, ubicaciones de almacén y almacenes de Amazon FBA.</p>
-                    <li>
-                        <h3> Nunca más se agoten los productos </h3>
-                    </li>
-                    <p>Tenga un mejor control y visibilidad de sus niveles de stock en todos sus canales, en un solo lugar.</p>
-                    <li>
-                        <h3>Pronóstico para el futuro</h3>
-                    </li>
-                    <p>Pronóstico sobre períodos anteriores de altas ventas y productos / variantes más vendidos. Tenga en cuenta el tiempo de entrega de los proveedores para que nunca más se agote o vuelva a tener exceso de existencias.</p>
-        
-                </ul>
-            </div>
-        </div>
-
-        <div class="col col-hover border-orange rounded-3 mx-5">
-            
-                <H2 class="text-center fw-bold fs-1 rounded-3">SEGUIMIENTO Y CONTROL</H2>
-                <ul>
-                    <li>
-                        <h3> Saber cuándo los niveles de stock son bajos </h3>
-                    </li>
-                    <p>Supervise sus niveles de existencias en todos los canales con actualizaciones diarias fijas por correo electrónico. Reordene el stock desde Veeqo con solo hacer clic en un botón.</p>
-                    <li>
-                        <h3> Toma de inventario más fácil, rápida y mejor</h3>
-                    </li>
-                    <p>Realice tomas de stock flexibles basadas en su equipo y almacén, utilizando nuestra aplicación móvil. Evita tener que parar las operaciones y hazlo mucho más rápido y con mayor precisión.</p>
-        
-                </ul>
-           
-        </div>
-
-    </div>
+      </div>
+    
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+      <script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"></script>
+    
+      <script>
+        $(document).ready(function () {
+          $('#tabla_1').DataTable({
+            "language": {
+              "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+            }
+          });
+        });
+    
+        function mostrarModal() {
+          var myModal = new bootstrap.Modal(document.getElementById('modal'), {
+            keyboard: false
+          });
+          myModal.toggle();
+        }
+    
+        function mostrarCampoInventario() {
+            var select = document.getElementById('select');
+            var inv2 = document.getElementById('inv2');
+            console.log(select.value);
+            if (select.value == 3) {
+              inv2.classList.remove("d-none");
+            }else{
+              inv2.classList.add("d-none");
+            }
+          }
+    
+    
+      </script>
 
     
     <br>
@@ -153,34 +212,6 @@
 
     
 
-    <!------ PLANES Y PRECIOS ---------->
-
-    <div class="contenedor fs-1" id="precios">
-        <div class="precio">
-            <h2>Pequeñas Empresas</h2>
-            <i class="icon fa-regular fa-building fa-4x"></i>
-            <h3>299 USD / month</h3>
-            <p>Para vendedores de productos enfocados en vender a consumidores en línea </p>
-            <a href="" class="btn">Iniciar Ahora</a>
-
-        </div>
-        <div class="precio">
-            <h2>Negocios</h2>
-            <i class="icon fa-regular fa-building fa-4x"></i>
-            <h3>539 USD / month</h3>
-            <p>Para vendedores de productos enfocados en B2B y ventas al por mayor </p>
-            <a href="" class="btn">Iniciar Ahora</a>
-        </div>
-
-        <div class="precio">
-            <h2>Avanzado</h2>
-            <i class="icon fa-regular fa-building fa-4x"></i>
-            <h3>999 USD / month</h3>
-            <p>Para vendedores avanzados y grandes con ventas al consumidor y al por mayor </p>
-            <a href="" class="btn">Iniciar Ahora</a>
-
-        </div>
-    </div>
 
     <!------ Include the above in your HEAD tag ---------->
 
