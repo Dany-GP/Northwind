@@ -52,6 +52,26 @@ body {
     flex-wrap: wrap;
 }
 
+.contenedor-info {
+    width: 95%;
+    margin-top: 10rem !important;
+    margin: auto;
+    height: 100vh ;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.border-orange{
+    border: 1px solid #FF5001;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px 0px #FF5001;
+}
+
+.col-hover:hover{
+    background-color: #343a40 !important;
+}
+
 .precio {
     width: 33%;
     height: 550px;
@@ -581,7 +601,6 @@ p {
 .contenedor-medio {
     width: 95%;
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
     margin-top: 20rem !important;
     max-width: 105em;
@@ -605,4 +624,8 @@ p {
 .bg-orange {
     background-color: #FF5001;
     color: #212529 !important;
+}
+
+.text-orange{
+    color: #FF5001 !important;
 }
