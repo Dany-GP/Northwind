@@ -8,7 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/r-2.2.9/datatables.min.css"/>
+ 
+    
+    
     <link rel="shortcut icon" href="img/Logotipo-500x500-px.png">
     <style>
         /* Style the tab */
@@ -124,7 +127,7 @@
         <br>
         <h3>Uriangato</h3>
         <br>
-        <table id="tabla_1" class="table  table-striped display">
+        <table id="tabla_1" class="table table-striped w-100">
             <thead>
                 <tr>
                     <th>Clave</th>
@@ -206,14 +209,14 @@
         <br>
         <h3>Moroleon</h3>
         <br>
-        <table id="tabla_2" class="table  table-striped display">
+        <table id="tabla_2" class="table table-striped w-100">
             <thead>
                 <tr>
                     <th>Clave</th>
                     <th>Producto</th>
                     <th>Categoria</th>
                     <th>Existencia</th>
-                    <th>Nivel de rorden</th>
+                    <th>Nivel de reorden</th>
                 </tr>
             </thead>
             <tbody>
@@ -244,6 +247,7 @@
                     <td>Refrescos</td>
                     <td>14</td>
                     <td>10</td>
+                    
                 </tr>
             </tbody>
         </table>
@@ -254,14 +258,14 @@
         <br>
         <h3>Yuriria</h3>
         <br>
-        <table id="tabla_3" class="table table-striped display">
+        <table id="tabla_3" class="table table-striped w-100">
             <thead>
                 <tr>
                     <th>Clave</th>
                     <th>Producto</th>
                     <th>Categoria</th>
                     <th>Existencia</th>
-                    <th>Nivel de rorden</th>
+                    <th>Nivel de reorden</th>
                 </tr>
             </thead>
             <tbody>
@@ -367,13 +371,15 @@
         document.getElementById("defaultOpen").click();
         $(document).ready(function () {
             $('#tabla_1').DataTable({
+                responsive: true,
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
-                }
+                },
             });
         });
         $(document).ready(function () {
             $('#tabla_2').DataTable({
+                responsive: true,
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
                 }
@@ -381,6 +387,7 @@
         });
         $(document).ready(function () {
             $('#tabla_3').DataTable({
+                responsive: true,
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
                 }
@@ -613,7 +620,13 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/abd9f14712.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/r-2.2.9/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap5.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
 
 </body>
 
