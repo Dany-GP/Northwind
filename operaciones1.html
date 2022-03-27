@@ -101,10 +101,16 @@
             padding: 12px 16px;
             transform: translate(0%, -50%);
         }
-
+        .tabcontent {
+            
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            /*border-top: none;*/
+        }
         .close:hover {
             background: #bbb;
         }
+        
     </style>
     <title>Almacenes</title>
 </head>
@@ -130,8 +136,11 @@
             <li class="nav-item"><a href="#info" class="nav-link txt-white">Acerca de</a></li>
         </ul>
     </header>
+    <div class="tab sticky-top">
+        <button class="tablinks" onclick="openAlmacen(event, 'AlmacenO')" id="defaultOpenn" style="display: none;">Boton Invisible</button>
+    </div>
 
-    <div class="tabcontent container my-5" style="display: block;">
+    <div id="AlmacenO" class="tabcontent container my-5">
         <div class="row">
             <div class="col">
                 <h2>Movimientos</h2>
@@ -143,13 +152,13 @@
         </div>
 
 
-        <table id="tabla_1" class="table table-dark table-striped ">
+        <table id="tabla_3" class="table table-dark table-striped w-100">
             <thead>
                 <tr>
-                    <th>Fecha</th>
-                    <th>Tipo de movimiento</th>
-                    <th>Almacén origen</th>
-                    <th>Almacén Destino</th>
+                    <th data-priority="1">Fecha</th>
+                    <th data-priority="2">Tipo de movimiento</th>
+                    <th data-priority="3">Almacén origen</th>
+                    <th data-priority="4">Almacén Destino</th>
                 </tr>
             </thead>
             <tbody>
@@ -157,37 +166,37 @@
                     <td>22-03-2022</td>
                     <td>Entrada por compra</td>
                     <td>1</td>
-                    <td></td>
+                    <td>6787987656457687</td>
                 </tr>
                 <tr>
                     <td>22-03-2022</td>
                     <td>Salida por venta</td>
                     <td>3</td>
-                    <td></td>
+                    <td>6576879876756</td>
                 </tr>
                 <tr>
                     <td>22-03-2022</td>
                     <td>Ajuste</td>
                     <td>1</td>
-                    <td></td>
+                    <td>7899068790</td>
                 </tr>
                 <tr>
                     <td>22-03-2022</td>
                     <td>Traspaso</td>
                     <td>1</td>
-                    <td>3</td>
+                    <td>300000000000000000000000000000000000</td>
                 </tr>
                 <tr>
                     <td>22-03-2022</td>
                     <td>Entrada por compra</td>
                     <td>2</td>
-                    <td></td>
+                    <td>5679675768796767</td>
                 </tr>
                 <tr>
                     <td>22-03-2022</td>
                     <td>Entrada por compra</td>
                     <td>1</td>
-                    <td></td>
+                    <td>6578997656789</td>
                 </tr>
 
             </tbody>
@@ -285,14 +294,34 @@
     <script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"></script>
 
     <script>
+        
+        function openAlmacen(evt, Almacen) {
+            
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+
+
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(Almacen).style.display = "block";
+            evt.currentTarget.className += " active";
+           
         $(document).ready(function () {
-            $('#tabla_1').DataTable({
-                resposive: true,
+            $('#tabla_3').DataTable({
+                responsive: true,
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
-                }
+                },
             });
         });
+        }
+        document.getElementById("defaultOpenn").click();
+
 
         function mostrarModal() {
             var myModal = new bootstrap.Modal(document.getElementById('modal'), {

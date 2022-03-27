@@ -144,7 +144,7 @@
 
     <div class="tab sticky-top">
         <button class="tablinks" onclick="openAlmacen(event, 'Almacen1')" id="defaultOpen">Stock Total</button>
-        <button class="tablinks" onclick="openAlmacen(event, 'Almacen2')">Almacen #</button>
+        <button class="tablinks" onclick="openAlmacen2(event, 'Almacen2')" id="dosOpen">Almacen #</button>
     </div>
 
     <div id="Almacen1" class="tabcontent container my-5">
@@ -323,6 +323,7 @@
 
     <script>
         function openAlmacen(evt, Almacen) {
+            
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");
             for (i = 0; i < tabcontent.length; i++) {
@@ -336,25 +337,50 @@
             }
             document.getElementById(Almacen).style.display = "block";
             evt.currentTarget.className += " active";
+           
+        $(document).ready(function () {
+           tablaUno= $('#tabla_1').DataTable({
+               destroy : true,
+                responsive: true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                },
+            });
+        });
         }
-        // Get the element with id="defaultOpen" and click on it
+        function openAlmacen2(evt, Almacen) {
+            
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+
+
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(Almacen).style.display = "block";
+            evt.currentTarget.className += " active";
+        $(document).ready(function () {
+            tablaDos= $('#tabla_2').DataTable({
+                destroy:true,
+                responsive: true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                },
+            });
+        });
+        }
         document.getElementById("defaultOpen").click();
-        $(document).ready(function () {
-            $('#tabla_1').DataTable({
-                responsive: true,
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
-                },
-            });
-        });
-        $(document).ready(function () {
-            $('#tabla_2').DataTable({
-                responsive: true,
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
-                },
-            });
-        });
+
+        
+        
+
+        
+        // Get the element with id="defaultOpen" and click on it
+        
         
     </script>
 
