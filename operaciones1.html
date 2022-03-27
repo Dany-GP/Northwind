@@ -61,10 +61,10 @@
 
         /* Style the list items */
         .row ul li {
-            border: 1px solid #ddd;
+
             margin-top: -1px;
             /* Prevent double borders */
-            background-color: #f6f6f6;
+
             padding: 12px;
             text-decoration: none;
             font-size: 18px;
@@ -75,7 +75,7 @@
 
         /* Add a light grey background color on hover */
         .row ul li:hover {
-            background-color: #eee;
+            background-color: rgb(87, 87, 87) !important;
         }
 
         /* Style the close button (span) */
@@ -201,31 +201,33 @@
                             <option value="3">Ajuste</option>
                         </select>
                         <div class="row mb-3 mx-1">
-                            <ul class="list-unstyled">
-                                
-                                <li>Producto 1 - 10 unidades<span class="close">x</span></li>
+                            <ul class="list-unstyled" id="listaProductos">
 
-                                <li>Producto 2 - 4 unidades<span class="close">x</span></li>
-                                <li>Producto 3 - 1 unidad<span class="close">x</span></li>
+                                <li class="bg-dark text-white">Producto 1 - 10 unidades<span class="close">x</span></li>
 
-                                <li>Acambaritas 500gr - 8 unidades<span class="close">x</span></li>
-                                <li>Atun 500 gr - 3 unidades<span class="close">x</span></li>
-                                
+                                <li class="bg-dark text-white">Producto 2 - 4 unidades<span class="close">x</span></li>
+                                <li class="bg-dark text-white">Producto 3 - 1 unidad<span class="close">x</span></li>
+
+                                <li class="bg-dark text-white">Acambaritas 500gr - 8 unidades<span
+                                        class="close">x</span></li>
+                                <li class="bg-dark text-white">Atun 500 gr - 3 unidades<span class="close">x</span></li>
+
                             </ul>
                         </div>
                         <label for="" class="form-label">Selecciona el producto</label>
-                        <select class="form-select bg-dark text-white mb-3" id="select"
-                            onchange="mostrarCampoInventario()" aria-label="Default select example">
-                            <option value="1" selected>Agua 500ml</option>
-                            <option value="2">Paquete Huevo 12 pz</option>
-                            <option value="3">Nescafé 500gr</option>
-                            <option value="3">Atún Dolores 100gr</option>
-                            <option value="3">Atún Dolores 200gr</option>
+                        <select class="form-select bg-dark text-white mb-3" id="prod"
+                            aria-label="Default select example">
+                            <option value="Agua 500ml" selected>Agua 500ml</option>
+                            <option value="Paquete Huevo 12 pz">Paquete Huevo 12 pz</option>
+                            <option value="Nescafé 500gr">Nescafé 500gr</option>
+                            <option value="Atún Dolores 100gr">Atún Dolores 100gr</option>
+                            <option value="Atún Dolores 200gr">Atún Dolores 200gr</option>
                         </select>
                         <label for="" class="form-label">Número de productos</label>
-                        <input type="number" class="form-control bg-dark text-white mb-3" placeholder="0">
+                        <input type="number" id="numProd" class="form-control bg-dark text-white mb-3" placeholder="0">
                         <div class="row">
-                            <button class="btn  mb-3" type="button">Agregar producto</button>
+                            <button class="btn  mb-3" type="button" onclick="agregarProducto()">Agregar
+                                producto</button>
                         </div>
                         <div class="row">
                             <div class="col">
@@ -293,6 +295,39 @@
                 inv2.classList.remove("d-none");
             } else {
                 inv2.classList.add("d-none");
+            }
+        }
+
+        var closebtns = document.getElementsByClassName("close");
+        var i;
+
+        /* Loop through the elements, and hide the parent, when clicked on */
+        for (i = 0; i < closebtns.length; i++) {
+            closebtns[i].addEventListener("click", function () {
+                this.parentElement.style.display = 'none';
+            });
+        }
+
+        function agregarProducto() {
+            var lista = document.getElementById("listaProductos");
+            var prod = document.getElementById("prod");
+            var numProd = document.getElementById("numProd");
+            var item = document.createElement("li");
+            var x = document.createElement("span");
+            x.classList.add("close")
+            item.appendChild(x);
+            item.innerHTML = prod.value + " - " + numProd.value + " unidades" + "<span class='close'>x</span>";
+            item.classList.add("text-white");
+            lista.append(item);
+
+            var closebtns = document.getElementsByClassName("close");
+            var i;
+
+            /* Loop through the elements, and hide the parent, when clicked on */
+            for (i = 0; i < closebtns.length; i++) {
+                closebtns[i].addEventListener("click", function () {
+                    this.parentElement.style.display = 'none';
+                });
             }
         }
 
