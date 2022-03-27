@@ -128,15 +128,14 @@
     </header>
 
     <div class="tab sticky-top">
-        <button class="tablinks" onclick="openAlmacen(event, 'Almacen1')" id="defaultOpen">Almacen #1</button>
-        <button class="tablinks" onclick="openAlmacen(event, 'Almacen2')">Almacen #2</button>
-        <button class="tablinks" onclick="openAlmacen(event, 'Almacen3')">Almacen #3</button>
+        <button class="tablinks" onclick="openAlmacen(event, 'Almacen1')" id="defaultOpen">Stock Total</button>
+        <button class="tablinks" onclick="openAlmacen(event, 'Almacen2')">Almacen #</button>
     </div>
 
     <div id="Almacen1" class="tabcontent container my-5">
         <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
         <br>
-        <h3>Uriangato</h3>
+        <h3>Stock Total</h3>
         <br>
         <table id="tabla_1" class="table table-dark table-striped w-100">
             <thead>
@@ -154,8 +153,8 @@
                     <td>001</td>
                     <td>Leche</td>
                     <td>Lacteos</td>
-                    <td>8</td>
-                    <td>10</td>
+                    <td>80</td>
+                    <td>30</td>
                     <td>
                         <button class="btn" onclick="mostrarModal()">Editar</button>
                     </td>
@@ -164,8 +163,8 @@
                     <td>002</td>
                     <td>Crema</td>
                     <td>Lacteos</td>
-                    <td>4</td>
-                    <td>10</td>
+                    <td>40</td>
+                    <td>30</td>
                     <td>
                         <button class="btn">Editar</button>
                     </td>
@@ -174,8 +173,8 @@
                     <td>003</td>
                     <td>Jamon</td>
                     <td>Embutidos</td>
-                    <td>13</td>
-                    <td>10</td>
+                    <td>23</td>
+                    <td>30</td>
                     <td>
                         <button class="btn">Editar</button>
                     </td>
@@ -184,8 +183,8 @@
                     <td>004</td>
                     <td>Salchichas</td>
                     <td>Embutidos</td>
-                    <td>7</td>
-                    <td>10</td>
+                    <td>17</td>
+                    <td>30</td>
                     <td>
                         <button class="btn">Editar</button>
                     </td>
@@ -195,17 +194,17 @@
                     <td>Coca cola</td>
                     <td>Refrescos</td>
                     <td>12</td>
-                    <td>10</td>
+                    <td>30</td>
                     <td>
                         <button class="btn">Editar</button>
                     </td>
                 </tr>
                 <tr>
                     <td>023</td>
-                    <td>SSprite</td>
+                    <td>Sprite</td>
                     <td>Refrescos</td>
-                    <td>24</td>
-                    <td>10</td>
+                    <td>54</td>
+                    <td>30</td>
                     <td>
                         <button class="btn">Editar</button>
                     </td>
@@ -259,62 +258,6 @@
                     <td>14</td>
                     <td>10</td>
 
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div id="Almacen3" class="tabcontent container my-5">
-        <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-        <br>
-        <h3>Yuriria</h3>
-        <br>
-        <table id="tabla_3" class="table table-dark table-striped w-100">
-            <thead>
-                <tr>
-                    <th>Clave</th>
-                    <th>Producto</th>
-                    <th>Categoria</th>
-                    <th>Existencia</th>
-                    <th>Nivel de reorden</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>Leche</td>
-                    <td>Lacteos</td>
-                    <td>18</td>
-                    <td>10</td>
-                </tr>
-
-                <tr>
-                    <td>003</td>
-                    <td>Jamon</td>
-                    <td>Embutidos</td>
-                    <td>1</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>004</td>
-                    <td>Salchichas</td>
-                    <td>Embutidos</td>
-                    <td>11</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>022</td>
-                    <td>Coca cola</td>
-                    <td>Refrescos</td>
-                    <td>2</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>023</td>
-                    <td>Sprite</td>
-                    <td>Refrescos</td>
-                    <td>2</td>
-                    <td>10</td>
                 </tr>
             </tbody>
         </table>
@@ -397,14 +340,7 @@
                 }
             });
         });
-        $(document).ready(function () {
-            $('#tabla_3').DataTable({
-                responsive: true,
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
-                }
-            });
-        });
+        
     </script>
 
     <script>
