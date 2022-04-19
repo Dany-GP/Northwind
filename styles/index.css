@@ -145,9 +145,85 @@ body {
     cursor: pointer;
 }
 
+.cont-logo{
+    width: 210px !important;
+}
+
 .logo {
     max-width: 4rem;
     align-items: flex-start;
+}
+
+.n{
+    position: absolute;
+    animation-name: girarN;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+
+}
+
+.w{
+    opacity: 0;
+    animation-name: mostrarW;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-delay: 4s;
+    animation-fill-mode: forwards;
+}
+
+.borde{
+    position: absolute;
+    opacity: 0;
+    animation-name: mostrarBorde;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-delay: 4s;
+    animation-fill-mode: forwards;
+}
+
+.guionW{
+    position: absolute;
+    opacity: 0;
+    animation-name: mostrarBorde;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-delay: 4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes girarN {
+    from{
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(45deg);
+    }
+    75%{transform: rotate(-45deg);}
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes mostrarW {
+    from{
+        opacity: 0;
+        margin-left: -10px;
+    }
+    to{
+        opacity: 1;
+        margin-left: 0px;
+    }
+}
+
+@keyframes mostrarBorde {
+    from{
+        opacity: 0;
+        
+    }
+    to{
+        opacity: 1;
+        
+    }
 }
 
 body {
