@@ -52,6 +52,26 @@ body {
     flex-wrap: wrap;
 }
 
+.contenedor-info {
+    width: 95%;
+    margin-top: 10rem !important;
+    margin: auto;
+    height: 100vh ;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.border-orange{
+    border: 1px solid #FF5001;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px 0px #FF5001;
+}
+
+.col-hover:hover{
+    background-color: #343a40 !important;
+}
+
 .precio {
     width: 33%;
     height: 550px;
@@ -125,9 +145,96 @@ body {
     cursor: pointer;
 }
 
+.cont-logo{
+    width: 210px !important;
+}
+
 .logo {
     max-width: 4rem;
     align-items: flex-start;
+}
+
+.n{
+    position: absolute;
+    animation-name: girarN;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+}
+
+.w{
+    opacity: 0;
+    animation-name: mostrarW;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-delay: 4s;
+    animation-fill-mode: forwards;
+}
+
+.borde{
+    position: absolute;
+    opacity: 0;
+    animation-name: mostrarBorde;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-delay: 4s;
+    animation-fill-mode: forwards;
+}
+
+.guionW{
+    position: absolute;
+    opacity: 0;
+    animation-name: mostrarBorde;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-delay: 4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes girarN {
+    from{
+        transform: rotateX(0deg);
+    }
+    25%{
+        transform: rotateX(50deg);
+
+    }
+    75%{transform: rotateX(-50deg);
+    }
+    
+    to{
+        transform: rotateX(360deg);
+    }
+}
+
+@keyframes mostrarW {
+    from{
+        opacity: 1;
+    }
+    25%{
+        transform: rotateX(180deg);
+
+    }
+    50%{
+        transition: cubic-bezier(0.95, 0.05, 0.795, 0.035)
+    }
+    75%{
+    }
+    to{
+        opacity: 1;
+
+        
+    }
+}
+
+@keyframes mostrarBorde {
+    from{
+        opacity: 0;
+        
+    }
+    to{
+        opacity: 1;
+        
+    }
 }
 
 body {
@@ -581,7 +688,6 @@ p {
 .contenedor-medio {
     width: 95%;
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
     margin-top: 20rem !important;
     max-width: 105em;
@@ -605,4 +711,8 @@ p {
 .bg-orange {
     background-color: #FF5001;
     color: #212529 !important;
+}
+
+.text-orange{
+    color: #FF5001 !important;
 }
