@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/r-2.2.9/datatables.min.css" />
+
+
+
+    <link rel="shortcut icon" href="img/Logotipo-500x500-px.png">
+    <style>
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+            cursor: default;
+            color: rgb(255, 255, 255) !important;
+            border: 1px solid transparent;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .dataTables_wrapper .dataTables_length select {
+            border: 1px solid #FF5001;
+            border-radius: 3px;
+            padding: 5px;
+            background-color: rgb(255 255 255 / 90%);
+            padding: 4px;
+        }
+
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter,
+        .dataTables_wrapper .dataTables_info,
+        .dataTables_wrapper .dataTables_processing,
+        .dataTables_wrapper .dataTables_paginate {
+            color: rgb(255, 255, 255);
+        }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        .btn {
+    display: inline-block;
+    width: 150px;
+    padding: 12px;
+    background: #343A40;
+    border: 0.1rem #FF5001 solid !important;
+    text-decoration: none;
+    color: #EFEFEF;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin: auto;
+}
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            /*border-top: none;*/
+        }
+
+        /* Style the close button */
+        .topright {
+            float: right;
+            cursor: pointer;
+            font-size: 28px;
+        }
+
+        .topright:hover {
+            color: red;
+        }
+
+        table.dataTable thead .sorting {
+            background-image: url("../images/sort_both.png");
+            color: white;
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+            border: 1px solid #aaa;
+            border-radius: 3px;
+            padding: 5px;
+            background-color: transparent;
+            margin-left: 3px;
+            color: white;
+        }
+    </style>
+    <title>Almacenes</title>
+</head>
+
+<body class="bg-dark">
+    <!-- header se puede agregar clase sticky-top para fijar header -->
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom  bg-dark">
+        <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+
+            <span class="fs-4 txt-white border border-1 rounded p-1 mx-3 btn-orange-no-border">
+                <strong class="">North</strong>Wind
+                <img src="img/Logotipo-500x500-px.png" class="logo">
+            </span>
+        </a>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="#" class="nav-link active btn-orange txt-white rounded-pill"
+                    aria-current="page">Login</a></li>
+            <li class="nav-item"><a href="#" class="nav-link txt-white">Soporte</a></li>
+            <li class="nav-item"><a href="#precios" class="nav-link txt-white">Planes</a></li>
+            <li class="nav-item"><a href="Almacenes1.html" class="nav-link txt-white">Almacenes</a></li>
+            <li class="nav-item"><a href="operaciones1.html" class="nav-link txt-white">Operaciones</a></li>
+            <li class="nav-item"><a href="#info" class="nav-link txt-white">Acerca de</a></li>
+        </ul>
+    </header>
+
+    <div class="tab sticky-top">
+        <button class="tablinks" onclick="openAlmacen(event, 'Almacen1')" id="defaultOpen">Stock Total</button>
+        <button class="tablinks" onclick="openAlmacen2(event, 'Almacen2')" id="dosOpen">Almacen #</button>
+    </div>
+
+    <div id="Almacen1" class="tabcontent container my-5">
+        <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+        <br>
+        <h3>Stock Total</h3>
+        <br>
+        <table id="tabla_1" class="table table-dark table-striped w-100">
+            <thead>
+                <tr>
+                    <th>Clave</th>
+                    <th>Producto</th>
+                    <th>Categoria</th>
+                    <th>Existencia</th>
+                    <th>Nivel de reorden</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>Leche</td>
+                    <td>Lacteos</td>
+                    <td>80</td>
+                    <td>30</td>
+                    <td>
+                        <button class="btn" onclick="mostrarModal()">Editar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Crema</td>
+                    <td>Lacteos</td>
+                    <td>40</td>
+                    <td>30</td>
+                    <td>
+                        <button class="btn">Editar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>Jamon</td>
+                    <td>Embutidos</td>
+                    <td>23</td>
+                    <td>30</td>
+                    <td>
+                        <button class="btn">Editar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>004</td>
+                    <td>Salchichas</td>
+                    <td>Embutidos</td>
+                    <td>17</td>
+                    <td>30</td>
+                    <td>
+                        <button class="btn">Editar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>022</td>
+                    <td>Coca cola</td>
+                    <td>Refrescos</td>
+                    <td>12</td>
+                    <td>30</td>
+                    <td>
+                        <button class="btn">Editar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>023</td>
+                    <td>Sprite</td>
+                    <td>Refrescos</td>
+                    <td>54</td>
+                    <td>30</td>
+                    <td>
+                        <button class="btn">Editar</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div id="Almacen2" class="tabcontent container my-5">
+        <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+        <br>
+        <h3>Moroleon</h3>
+        <br>
+        <table id="tabla_2" class="table table-dark table-striped w-100">
+            <thead>
+                <tr>
+                    <th>Clave</th>
+                    <th>Producto</th>
+                    <th>Categoria</th>
+                    <th>Existencia</th>
+                    <th>Nivel de reorden</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>002</td>
+                    <td>Crema</td>
+                    <td>Lacteos</td>
+                    <td>8</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>Jamon</td>
+                    <td>Embutidos</td>
+                    <td>5</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>022</td>
+                    <td>Coca cola</td>
+                    <td>Refrescos</td>
+                    <td>10</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>023</td>
+                    <td>Sprite</td>
+                    <td>Refrescos</td>
+                    <td>14</td>
+                    <td>10000000000000000000000</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">"Nombre del producto"</Nombre>
+                    </h3>
+                    <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <select class="form-select bg-dark text-white" aria-label="Default select example">
+                            <option selected>Selecciona la operación</option>
+                            <option value="1">Entrada de compra</option>
+                            <option value="2">Salida por venta</option>
+                            <option value="3">Traspaso entre almacenes</option>
+                            <option value="3">Ajuste</option>
+                        </select>
+                        <label for="" class="form-label">Número de productos</label>
+                        <input type="number" class="form-control bg-dark text-white" placeholder="0">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"></script>
+
+
+
+
+    <script>
+        function openAlmacen(evt, Almacen) {
+            
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+
+
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(Almacen).style.display = "block";
+            evt.currentTarget.className += " active";
+           
+        $(document).ready(function () {
+           tablaUno= $('#tabla_1').DataTable({
+               destroy : true,
+                responsive: true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                },
+            });
+        });
+        }
+        function openAlmacen2(evt, Almacen) {
+            
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+
+
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(Almacen).style.display = "block";
+            evt.currentTarget.className += " active";
+        $(document).ready(function () {
+            tablaDos= $('#tabla_2').DataTable({
+                destroy:true,
+                responsive: true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                },
+            });
+        });
+        }
+        document.getElementById("defaultOpen").click();
+
+        
+        
+
+        
+        // Get the element with id="defaultOpen" and click on it
+        
+        
+    </script>
+
+    <script>
+        function mostrarModal() {
+            var myModal = new bootstrap.Modal(document.getElementById('modal'), {
+                keyboard: false
+            });
+            myModal.toggle();
+        }
+
+    </script>
+
+
+
+    <br>
+
+
+
+
+
+    <!------ Include the above in your HEAD tag ---------->
+
+
+    <footer id="dk-footer" class="dk-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-4">
+                    <div class="dk-footer-box-info">
+                        <a href="index.html" class="footer-logo">
+                            <img src="img/Logotipo-500x500-px.png" alt="footer_logo" class="img-fluid"
+                                style="height: 80px; width: 80px;">
+                        </a>
+                        <p class="footer-info-text">
+                            NorthWind
+                        </p>
+                        <div class="footer-social-link">
+                            <h3>Contáctanos</h3>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Social link -->
+                    </div>
+                    <!-- End Footer info -->
+                    <div class="footer-awarad">
+                        <!-- <img src="images/icon/best.png" alt=""> -->
+                        <p>Mejor compañía de inventario 2022</p>
+                    </div>
+                </div>
+                <!-- End Col -->
+                <div class="col-md-12 col-lg-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="contact-us">
+                                <div class="contact-icon">
+                                    <i class="fa fa-map-o" aria-hidden="true"></i>
+                                </div>
+                                <!-- End contact Icon -->
+                                <div class="contact-info">
+                                    <h3>Guanajuato México</h3>
+                                    <p>Avenida Costeño #4000, Iramuco</p>
+                                </div>
+                                <!-- End Contact Info -->
+                            </div>
+                            <!-- End Contact Us -->
+                        </div>
+                        <!-- End Col -->
+                        <div class="col-md-6">
+                            <div class="contact-us contact-us-last">
+                                <div class="contact-icon">
+                                    <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                                </div>
+                                <!-- End contact Icon -->
+                                <div class="contact-info">
+                                    <h3>4434626670</h3>
+                                    <p>Llámanos</p>
+                                </div>
+                                <!-- End Contact Info -->
+                            </div>
+                            <!-- End Contact Us -->
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Contact Row -->
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="footer-widget footer-left-widget">
+                                <div class="section-heading">
+                                    <h3>Links Útiles</h3>
+                                    <span class="animate-border border-black"></span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="#">Acerca de</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Servicios</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Proyectos</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Nuestro Equipo</a>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <a href="#">Contáctanos</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Blog</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Testimonios</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Faq</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Footer Widget -->
+                        </div>
+                        <!-- End col -->
+                        <div class="col-md-12 col-lg-6">
+                            <div class="footer-widget">
+                                <div class="section-heading">
+                                    <h3>Soporte</h3>
+                                    <span class="animate-border border-black"></span>
+                                </div>
+                                <p>
+                                    <!-- Don’t miss to subscribe to our new feeds, kindly fill the form below. -->
+                                    Escribe tu correo en el apartado de abajo o usa nuestro chat y te contactaremos
+                                    enseguida
+                                </p>
+                                <!-- Código de instalación Cliengo para Hola.com -->
+                                <script type="text/javascript">
+                                    (function () {
+                                        var ldk = document.createElement('script');
+                                        ldk.type = 'text/javascript';
+                                        ldk.async = true;
+                                        ldk.src = 'https://s.cliengo.com/weboptimizer/621cb2d9420424002a127fab/621cbc297bc156002a3809ca.js?platform=view_installation_code';
+                                        var s = document.getElementsByTagName('script')[0];
+                                        s.parentNode.insertBefore(ldk, s);
+                                    })();
+                                </script>
+                                <form action="#">
+                                    <div class="form-row">
+                                        <div class="col dk-footer-form">
+                                            <input type="email" class="form-control" style="color: aliceblue;"
+                                                placeholder="Correo Electrónico">
+                                            <button type="submit">
+                                                <i class="fa fa-send"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- End form -->
+                            </div>
+                            <!-- End footer widget -->
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Row -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Widget Row -->
+        </div>
+        <!-- End Contact Container -->
+
+
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>Copyright © 2019, Todos los derechos reservados NorthWind©</span>
+                    </div>
+                    <!-- End Col -->
+                    <div class="col-md-6">
+                        <div class="copyright-menu">
+                            <ul>
+                                <li>
+                                    <a href="#">Página Principal</a>
+                                </li>
+                                <li>
+                                    <a href="#">Términos</a>
+                                </li>
+                                <li>
+                                    <a href="#">Políticas de Privacidad</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contacto</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                </div>
+                <!-- End Row -->
+            </div>
+            <!-- End Copyright Container -->
+        </div>
+        <!-- End Copyright -->
+
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/abd9f14712.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/r-2.2.9/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap5.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
+
+</body>
+
+</html>
