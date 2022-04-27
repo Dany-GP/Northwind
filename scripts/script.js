@@ -18,12 +18,12 @@ function animarSignIn() {
 
     if (btn.innerText === "Sign Up") {
         keyframes = [
-            { 'left': '13%' },
+            { 'left': '10%' },
             { 'left': '59%' }];
 
         keyframes2 = [
             { 'left': '37%' },
-            { 'left': '13%' }];
+            { 'left': '9%' }];
 
         auxSignUp.animate(keyframes, config);
         signInLogin.animate(keyframes2, config);
@@ -37,12 +37,12 @@ function animarSignIn() {
         noOcultos[0].classList.add("d-none");
     } else {
         keyframes = [
-            { 'left': '13%' },
+            { 'left': '9%' },
             { 'left': '37%' }];
 
         keyframes2 = [
             { 'left': '59%' },
-            { 'left': '13%' }];
+            { 'left': '12%' }];
 
         auxSignUp.animate(keyframes2, config);
         signInLogin.animate(keyframes, config);
