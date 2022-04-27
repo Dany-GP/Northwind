@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" href="styles/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body class="bg-dark">
+    <header class="d-flex align-items-center flex-wrap justify-content-center py-3 mb-4 border-bottom  bg-dark">
+        <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+
+            <span
+                class="cont-logo fs-4 txt-white border border-1 rounded p-1 mx-3 btn-orange-no-border mr-5 d-flex align-items-center">
+                <strong class="">North</strong>Wind
+                <div class="d-flex ms-2">
+                    <img src="img/n.png" class="logo n">
+                    <img src="img/w.png" class="logo w">
+                    <img src="img/bordes.png" class="logo borde">
+                    <img src="img/guionW.png" class="logo guionW">
+                </div>
+            </span>
+
+        </a>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="#" class="nav-link active btn-orange txt-white rounded-pill"
+                    aria-current="page">Login</a></li>
+            <li class="nav-item"><a href="#" class="nav-link txt-white">Soporte</a></li>
+            <li class="nav-item"><a href="#precios" class="nav-link txt-white">Planes</a></li>
+            <li class="nav-item"><a href="Almacenes1.html" class="nav-link txt-white">Almacenes</a></li>
+            <li class="nav-item"><a href="operaciones1.html" class="nav-link txt-white">Operaciones</a></li>
+            <li class="nav-item"><a href="#info" class="nav-link txt-white">Acerca de</a></li>
+
+        </ul>
+    </header>
+
+    <div class="vh-100 d-flex">
+        <div class="container d-flex  flex-column ">
+
+            <div class="row bg-dark my-auto ">
+
+                <div id="signInLogin" class="col-sm bg-dark mb-5 position-absolute top-25 w-50 rounded"
+                    style="left: 37%; height: 59.5% !important;">
+                    <form action="" class="d-flex flex-column  border-top-0 rounded">
+                        <h1 id="holaaa" class="p-3 bg-dark text-center " style="color: #ff5001 !important;">Inicia Sesión en NorthWind
+                        </h1>
+                        <label class="form-label mx-2 d-none mostrar text-white" for="">Nombre</label>
+                        <div class="row mx-2 d-none mostrar">
+                            <input class="form-control" type="text" placeholder="p. ej. Juan Peréz Sosa">
+                        </div>
+                        <label class="form-label mx-2 text-white" for="">Correo Electrónico</label>
+                        <div class="row mx-2">
+                            <input class="form-control" type="email" placeholder="name@example.com">
+                        </div>
+                        <label class="form-label mx-2 text-white" for="">Contraseña</label>
+
+                        <div class="row mx-2">
+                            <input class="form-control mb-3" type="password" placeholder="password">
+                        </div>
+                        <div class="row mx-0">
+                            <a href="" class="noMostrar" style="color: #ff5001 !important;">Contraseña olvidada?</a>
+                        </div>
+
+                        <div class="row  w-100 ms-0 mb-4 my-2  border-top border-dark">
+                            <button type="button" id="botonAbajo" class="btn my-3 mx-auto w-50 rounded-pill "
+                                style="background: #ff5001 !important;">Inicia Sesión</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="auxSignUp" class="col-sm  bg-dark mb-3 overflow-visible position-absolute  top-25 w-25 rounded"
+                    style="left: 13%; height: 59.5% !important;">
+                    <form action="" class="d-flex bg-dark   flex-column  border-top-0 rounded">
+                        <h1 id="titleSign" class="mb-5 p-3  text-center" style="color: #ff5001 !important;">Create una cuenta</h1>
+                        <p id="msg" class="text-white text-center mx-2">Introduce tus credenciales para empezar a trabajar con nosotros</p>
+                        <div class="row w-100 ms-0 mb-0 my-2  ">
+                            <button type="button" id="btnSign" onclick="animarSignIn()"
+                                class="btn my-3 w-50 mx-auto rounded-pill" style="background: #ff5001 !important;">Regístrate</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <footer id="dk-footer" class="dk-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-4">
+                    <div class="dk-footer-box-info">
+                        <a href="index.html" class="footer-logo">
+                            <img src="img/Logotipo-500x500-px.png" alt="footer_logo" class="img-fluid"
+                                style="height: 80px; width: 80px;">
+                        </a>
+                        <p class="footer-info-text">
+                            NorthWind
+                        </p>
+                        <div class="footer-social-link">
+                            <h3>Contáctanos</h3>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Social link -->
+                    </div>
+                    <!-- End Footer info -->
+                    <div class="footer-awarad">
+                        <!-- <img src="images/icon/best.png" alt=""> -->
+                        <p>Mejor compañía de inventario 2022</p>
+                    </div>
+                </div>
+                <!-- End Col -->
+                <div class="col-md-12 col-lg-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="contact-us">
+                                <div class="contact-icon">
+                                    <i class="fa fa-map-o" aria-hidden="true"></i>
+                                </div>
+                                <!-- End contact Icon -->
+                                <div class="contact-info">
+                                    <h3>Guanajuato México</h3>
+                                    <p>Avenida Costeño #4000, Iramuco</p>
+                                </div>
+                                <!-- End Contact Info -->
+                            </div>
+                            <!-- End Contact Us -->
+                        </div>
+                        <!-- End Col -->
+                        <div class="col-md-6">
+                            <div class="contact-us contact-us-last">
+                                <div class="contact-icon">
+                                    <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                                </div>
+                                <!-- End contact Icon -->
+                                <div class="contact-info">
+                                    <h3>4434626670</h3>
+                                    <p>Llámanos</p>
+                                </div>
+                                <!-- End Contact Info -->
+                            </div>
+                            <!-- End Contact Us -->
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Contact Row -->
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="footer-widget footer-left-widget">
+                                <div class="section-heading">
+                                    <h3>Links Útiles</h3>
+                                    <span class="animate-border border-black"></span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="#">Acerca de</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Servicios</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Proyectos</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Nuestro Equipo</a>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <a href="#">Contáctanos</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Blog</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Testimonios</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Faq</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Footer Widget -->
+                        </div>
+                        <!-- End col -->
+                        <div class="col-md-12 col-lg-6">
+                            <div class="footer-widget">
+                                <div class="section-heading">
+                                    <h3>Soporte</h3>
+                                    <span class="animate-border border-black"></span>
+                                </div>
+                                <p>
+                                    <!-- Don’t miss to subscribe to our new feeds, kindly fill the form below. -->
+                                    Escribe tu correo en el apartado de abajo o usa nuestro chat y te contactaremos
+                                    enseguida
+                                </p>
+                                <!-- Código de instalación Cliengo para Hola.com -->
+                                <script type="text/javascript">
+                                    (function () {
+                                        var ldk = document.createElement('script');
+                                        ldk.type = 'text/javascript';
+                                        ldk.async = true;
+                                        ldk.src = 'https://s.cliengo.com/weboptimizer/621cb2d9420424002a127fab/621cbc297bc156002a3809ca.js?platform=view_installation_code';
+                                        var s = document.getElementsByTagName('script')[0];
+                                        s.parentNode.insertBefore(ldk, s);
+                                    })();
+                                </script>
+                                <form action="#">
+                                    <div class="form-row">
+                                        <div class="col dk-footer-form">
+                                            <input type="email" class="form-control" style="color: aliceblue;"
+                                                placeholder="Correo Electrónico">
+                                            <button type="submit">
+                                                <i class="fa fa-send"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- End form -->
+                            </div>
+                            <!-- End footer widget -->
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Row -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Widget Row -->
+        </div>
+        <!-- End Contact Container -->
+
+
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>Copyright © 2019, Todos los derechos reservados NorthWind©</span>
+                    </div>
+                    <!-- End Col -->
+                    <div class="col-md-6">
+                        <div class="copyright-menu">
+                            <ul>
+                                <li>
+                                    <a href="#">Página Principal</a>
+                                </li>
+                                <li>
+                                    <a href="#">Términos</a>
+                                </li>
+                                <li>
+                                    <a href="#">Políticas de Privacidad</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contacto</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                </div>
+                <!-- End Row -->
+            </div>
+            <!-- End Copyright Container -->
+        </div>
+        <!-- End Copyright -->
+
+    </footer>
+
+
+    
+    <script src="scripts/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/abd9f14712.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+</body>
+
+</html>
