@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/styles/ReporteVentasAnio.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
+    <link rel="shortcut icon" href="img/Logotipo-500x500-px.png">
 
     <title>Document</title>
 </head>
@@ -49,11 +49,11 @@
         </ul>
     </header>
 
-    <div class="container">
+    <div class="container mb-5">
         <h1 class="my-3">Reporte de ventas</h1>
         <p class="my-3">Muestra la cantidad de movimientos y la el monto total de las ventas en un periodo de un
             año agrupados por día</p>
-        <div class="row">
+        <div class="row mb-5">
             <form action="" class="d-flex align-items-center">
                 <div class="col">
 
@@ -69,19 +69,19 @@
                 </div>
             </form>
         </div>
+        <div hidden id="spinner" class="mb-5"></div>
 
-
-        <div class="row my-3">
+        <div class="row my-3 mb-5">
             <div id="dashboard_div" class=" rounded col-7">
                 <!--Divs that will hold each control and chart-->
                 <div id="filter_div" class="bg-dar"></div>
                 <div id="chart_div" class="bg-dar"></div>
             </div>
             <div class="col-5">
-                <table id="table_id" class="table table-dark table-stripped text-white">
+                <table id="table_id" class="table table-dark table-stripped table-hover text-white">
                     <thead>
-                        <th class="text-white">ID Compañía</th>
-                        <th>Fecha</th>
+                        <!-- <th class="text-white">ID Compañía</th> -->
+                        <th class="text-white">Fecha</th>
                         <th>Cantidad</th>
                         <th>Ventas</th>
                     </thead>
@@ -93,7 +93,7 @@
 
 
 
-    <footer id="dk-footer" class="dk-footer">
+    <footer id="dk-footer" class="dk-footer mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-lg-4">
@@ -299,6 +299,24 @@
         <!-- End Copyright -->
 
     </footer>
+
+    <div class="modal" id="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-dark">Error</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-dark">
+              <p>Ha ocurrido un error</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
