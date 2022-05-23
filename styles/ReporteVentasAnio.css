@@ -116,8 +116,8 @@ table.dataTable thead .sorting {
     content: "";
     width: 80px;
     height: 80px;
-    border: 2px solid #f3f3f3;
-    border-top: 3px solid #f25a41;
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #FF5001;
     border-radius: 100%;
     will-change: transform;
     animation: spin 1s infinite linear
