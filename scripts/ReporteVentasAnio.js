@@ -27,12 +27,13 @@ function generarReporte() {
 
                     $(document).ready(function () {
                         $('#table_id').DataTable({
-                            //dom: 'Bfrtip',
-                            destroy: true,
-                            "ordering": false,
+                            dom: 'Bfrtip',
                             buttons: [
                                 'copy', 'csv', 'excel', 'pdf', 'print'
                             ],
+                            destroy: true,
+                            "ordering": false,
+                            
                             data: data,
                             columns: [
                                 //{ data: 'company' },
@@ -80,8 +81,17 @@ function cargarChart(data) {
         'controlType': 'NumberRangeFilter',
         'containerId': 'filter_div',
         'options': {
-            'title': 'Cantidad',
+            'title': 'Ventas',
             'filterColumnLabel': 'Ventas',
+            'color': '#e0440e'
+        }
+    });
+    var donutRangeSlider2 = new google.visualization.ControlWrapper({
+        'controlType': 'NumberRangeFilter',
+        'containerId': 'filter_cant_div',
+        'options': {
+            'title': 'Cantidad',
+            'filterColumnLabel': 'Cantidad',
             'color': '#e0440e'
         }
     });
@@ -90,6 +100,37 @@ function cargarChart(data) {
         'chartType': 'LineChart',
         'containerId': 'chart_div',
         'options': {
+            'title': 'Cantidad de ventas por año',
+            'width': 800,
+            'height': 600,
+            'negativeColor': 'black',
+            'pieSliceText': 'value',
+            'curveType': 'function',
+            'legend': 'right',
+            colors: [ '#000','#e0440e']
+        }
+    });
+    
+    
+
+    var datosTabla = new google.visualization.DataTable();
+    //data.addColumn('string', 'Trimestre');
+    // datos.addColumn('number','Id');
+    datosTabla.addColumn('string', 'Fecha');
+    datosTabla.addColumn('number','Cantidad');
+    datosTabla.addColumn('number', 'Ventas');
+    
+    data.forEach((row) => {
+        console.log(typeof (row));
+        datosTabla.addRow([row.fecha, row.cantidad,row.ventas]);
+    });
+
+    var TableChart = new google.visualization.ChartWrapper({
+        'chartType': 'Table',
+        'containerId': 'tab_div',
+        'options': {
+            'page' : 'enable',
+            'showRowNumber': 'true',
             'title': 'Cantidad de ventas por año',
             'width': 700,
             'height': 600,
@@ -103,7 +144,11 @@ function cargarChart(data) {
 
 
     dashboard.bind(donutRangeSlider, LineChart);
-
+    dashboard.bind(donutRangeSlider, TableChart);
+    
+    dashboard.bind(donutRangeSlider2, TableChart);
+    dashboard.bind(donutRangeSlider2, LineChart);
     //Draw the dashboard.
     dashboard.draw(datos);
+    dashboard.draw(datosTabla);
 }

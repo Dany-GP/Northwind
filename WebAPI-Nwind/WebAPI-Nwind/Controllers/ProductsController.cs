@@ -110,7 +110,7 @@ namespace WebAPI_Nwind.Controllers
                     Company = o.Key.Compania,
                     Fecha = mfi.GetMonthName(o.Key.Mes)+ "-"+ o.Key.Dia,
                     //Mes = o.Key.Mes,
-                    Cantidad = o.Count(),
+                    Cantidad = o.Sum( o => o.Cantidad),
                     Ventas = decimal.Round((decimal) o.Sum(o=> o.Cantidad*o.Precio),2)
 
                 })
