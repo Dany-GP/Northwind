@@ -61,6 +61,56 @@ namespace WebAPI_Nwind.Controllers
                 
                 
         }
+        [HttpGet]
+        [Route("CampaniasDatos")]
+        public IEnumerable<Object> CompaniaDatos(int year)
+        {
+            return _context.Movements
+                .Join(
+                    _context.Movementdetails,
+                    m => m.MovementId,
+                    md => md.MovementId,
+                    (m, md) => new {
+                        Anio = m.Date.Year,
+                        Cantidad = md.Quantity,
+                        productoid = md.ProductId,
+                        idC = m.CompanyId
+                    })
+                .Where(m => m.Anio == year && m.idC == 1)
+                .Join(_context.Products,
+                    mod => mod.productoid,
+                    p => p.ProductId,
+                    (mod, p) => new
+                    {
+                        Precio = p.UnitPrice,
+                        Companiaid = p.SupplierId,
+                        Cantidad = mod.Cantidad,
+                        Idproducto = p.ProductId
+                    }
+                )
+                .Join(_context.Suppliers,
+                    pr => pr.Companiaid,
+                    s => s.SupplierId,
+                    (pr, s) => new
+                    {
+                        Nombre = s.CompanyName,
+                        SubTotal = (pr.Precio * pr.Cantidad),
+                        productid = pr.Idproducto,
+                        Total = pr.Cantidad
+                    }
+                )
+                .GroupBy(s => s.Nombre)
+                .Select(e => new
+                {
+                    Nombre = e.Key,
+                    ProductosVendidos = e.Sum(g => g.Total),
+                    VentaXProveedor = "$" + decimal.Round((decimal)e.Sum(e => e.SubTotal),2)
+
+                })
+                .OrderByDescending(f => f.ProductosVendidos)
+                .Take(8)
+                .AsEnumerable();
+        }
 
         [HttpGet]
         [Route("salesbyear")]

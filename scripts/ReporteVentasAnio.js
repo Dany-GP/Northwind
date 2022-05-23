@@ -7,7 +7,6 @@ var myModal = new bootstrap.Modal(document.getElementById('modal'), {
 
 function generarReporte() {
     spinner.removeAttribute('hidden');
-
     const val = document.getElementById('inputAnio').value;
     if (val != null) {
         try {

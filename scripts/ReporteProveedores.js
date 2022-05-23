@@ -1,38 +1,60 @@
-var table;
+const spinner = document.getElementById("spinner");
+var myModal = new bootstrap.Modal(document.getElementById('modal'), {
+    keyboard: false
+  })
 
-        fetch("https://localhost:7153/api/Employees/CampaniasDatos")
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            // Load the Visualization API and the corechart package.
-            google.charts.load('current', { 'packages': ['corechart', 'controls', 'table'] });
-
-            // Set a callback to run when the Google Visualization API is loaded.
-            google.charts.setOnLoadCallback(() => { cargarChart(data) });
-
-            table = $(document).ready(function () {
-                $('#table_id').DataTable({
-                    //dom: 'Bfrtip',
-                    destroy: true,
-                    buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
-                    ],
-                    data: data,
-
-                    columns: [
-                        { data: 'nombre' },
-                        { data: 'productosVendidos' },
-                        { data: 'ventaXProveedor' }
-                    ],
-                    "language": {
-                        "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
-                    },
-
-                });
-            });
-
-        });
+function generarReporte() {
+    spinner.removeAttribute('hidden');
+    const val = document.getElementById('inputAnio').value;
+    if (val != null) {
+        try{
+            fetch("https://localhost:7153/api/Products/CampaniasDatos?year=" + val)
+                .then(response => {
+                    if (!response.ok) throw Error(response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    spinner.setAttribute('hidden', '');
+                    console.log(data);
+                    // Load the Visualization API and the corechart package.
+                    google.charts.load('current', { 'packages': ['corechart', 'controls', 'table'] });
         
+                    // Set a callback to run when the Google Visualization API is loaded.
+                    google.charts.setOnLoadCallback(() => { cargarChart(data) });
+        
+                    $(document).ready(function () {
+                        $('#table_id').DataTable({
+                            dom: 'Bfrtip',
+                            buttons: [
+                                'copy', 'csv', 'excel', 'pdf', 'print'
+                            ],
+                            destroy: true,
+                            "ordering": false,
+                            
+                            data: data,
+        
+                            columns: [
+                                { data: 'nombre' },
+                                { data: 'productosVendidos' },
+                                { data: 'ventaXProveedor' }
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                            },
+        
+                        });
+                    });
+                }).catch(() => {
+                    spinner.setAttribute('hidden', '');
+                    myModal.show();
+                });
+        }catch (Error) {
+            setTimeout(function () { spinner.setAttribute('hidden', '') }, 5000)
+        }
+
+    }
+}
+
 function cargarChart(data) {
     var datos = new google.visualization.DataTable();
     console.log(data);
@@ -62,9 +84,9 @@ function cargarChart(data) {
         'chartType': 'LineChart',
         'containerId': 'chart_div',
         'options': {
-            'title': 'Ventas de productos y por porveedor',
-            'width': 700,
-            'height': 600,
+            'title': 'Ventas de productos por porveedor',
+            'width': 1300,
+            'height': 800,
             'negativeColor': 'black',
             'pieSliceText': 'value',
             'curveType': 'function',
