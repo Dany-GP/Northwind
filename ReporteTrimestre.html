@@ -15,7 +15,7 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link rel="shortcut icon" href="img/Logotipo-500x500-px.png">
 
-    <title>Document</title>
+    <title>Reporte Trimestral</title>
 </head>
 
 <body class="bg-dark">
@@ -46,59 +46,142 @@
             <li class="nav-item"><a href="#info" class="nav-link txt-white">Acerca de</a></li>
             <li class="nav-item"><a href="ReporteVentasAnio.html" class="nav-link txt-white">Ventas</a></li>
             <li class="nav-item"><a href="ReporteProveedores.html" class="nav-link txt-white">Proveedores</a></li>
-            <li class="nav-item"><a href="ReporteTrimestre.html" class="nav-link txt-white">Ventas Trimestrales</a></li>
-
         </ul>
     </header>
 
-    <div class="container mb-5">
-        <h1 class="my-3">Reporte de ventas</h1>
-        <p class="my-3">Muestra la cantidad de movimientos y el monto total de las ventas en un periodo de un
-            año agrupados por día</p>
-        <div class="row mb-5">
-            <form action="" class="d-flex align-items-center">
-                <div class="col">
-
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Año del reporte</label>
-                        <input type="number" placeholder="1996" class="form-control" id="inputAnio"
-                            aria-describedby="emailHelp">
-                    </div>
-
-                </div>
-                <div class="col text-end">
-                    <button type="button" onclick="generarReporte()" class="btn btn-orange">Generar reporte</button>
-                </div>
-            </form>
-        </div>
-        <div hidden id="spinner" class="mb-5"></div>
-
-        <div class="row my-3 mb-5">
-            <div id="dashboard_div" class=" rounded col-8">
-                <!--Divs that will hold each control and chart-->
-                <div id="filter_div" class="bg-dar"></div>
-                <div id="filter_cant_div" class="bg-dar"></div>
-                <div id="chart_div" class="bg-dar"></div>
-
-            </div>
-            <div class="col-4 mt-5">
-                <div id="tab_div" class="text-dark mt-2"></div>
+    <main>
+        <div class="container">
+            <div></div>
+            <div></div>
+            <h2>Dashboard - Reporte del Top 5 de productos por trimestres</h2>
+            <div id="dashboard_div">
+              <div class="row">
+                  <div class="col-md-6">
+                    <select name="" id="slcTrimestre" form="frmServicios"  class="form-control" required>
+                        <option value="/1" selected>Trimestre 1 (Enero - Marzo)</option>
+                        <option value="/2">Trimestre 2 (Abril - Junio)</option>
+                        <option value="/3">Trimestre 3 (Julio - Septiembre)</option>
+                        <option value="/4">Trimestre 4 (Octubre - Diciembre)</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <select name="" id="slcAnio" form="frmServicios"  class="form-control" required>
+                        <option value="/1996">Año: 1996</option>
+                        <option value="/1997" selected>Año: 1997</option>
+                    </select>
+                  </div>
+                  
+              </div>
+              </div>
+              <div class="col-md-6" id="filter_div"></div>
+              <div class="row" >
+                <div class="col-md-6" id="chart_div"></div>
+                <div class="col-md-6 " id="table_div" ></div>
+              </div>
             </div>
         </div>
-        <div class="container border rounded">
-            <table id="table_id" class="table table-dark table-stripped table-hover text-white">
-                <thead>
-                    <!-- <th class="text-white">ID Compañía</th> -->
-                    <th class="text-white">Fecha</th>
-                    <th>Cantidad</th>
-                    <th>Ventas</th>
-                </thead>
-
-            </table>
-        </div>
-
-    </div>
-
+    
+      </main>
+      
+    
+      
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+        
+        var anio="/1997";
+        var trimestre="/2";
+    
+        cargarTodo();
+    
+        var selectTrimestre = document.getElementById('slcTrimestre');
+        selectTrimestre.addEventListener('change',function(){
+            trimestre=this.options[selectTrimestre.selectedIndex].value;
+            cargarTodo();
+        });
+    
+        var selectAnio = document.getElementById('slcAnio');
+        selectAnio.addEventListener('change',function(){
+            anio=this.options[selectAnio.selectedIndex].value;
+            cargarTodo();    
+        });
+    
+        //setTimeOut
+    
+        //animación en un div que se muestre y oculte
+        function cargarTodo(){
+          google.charts.load("current", {packages:['corechart','controls','table']});
+              google.charts.setOnLoadCallback(cargarDatos);
+              function cargarDatos(){
+                  //muestro
+                  fetch("https://localhost:7153/api/Products/salesbytri"+anio+trimestre)
+                      .then(response => response.json())
+                      .then(data => drawDashboard(data))
+                      .catch(error => {
+                          console.error('Ni pedo', error);
+                          //ocultar
+                    
+                    });   
+          }
+    
+          function drawDashboard(productos) {
+              //ocultar
+            var arreglo=[];
+            arreglo.push(["Producto","Cantidad"]);
+    
+            productos.forEach(e => {
+              arreglo.push([e.producto,e.cantidad]);
+            });
+          
+            var data = google.visualization.arrayToDataTable(arreglo);
+    
+        
+            var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
+    
+            var sliderCantidad = new google.visualization.ControlWrapper({
+              'controlType': 'NumberRangeFilter',
+              'containerId': 'filter_div',
+              'options': {
+                'filterColumnLabel': 'Cantidad',
+              }
+            });
+    
+            var grafica = new google.visualization.ChartWrapper({
+              'chartType': 'ColumnChart',
+              'containerId': 'chart_div',
+              'options': {
+                'width': 600,
+                'height': 600,
+                'pieSliceText': 'value',
+                'legend': 'center',
+                'colors': ['#035AA6']
+              }
+            });
+    
+            var tabla = new google.visualization.ChartWrapper({
+              'chartType': 'Table',
+              'containerId': 'table_div',
+              'options': {
+                'width': 700,
+                'height': 600
+              }
+            });
+    
+            var table = new google.visualization.Table(document.getElementById('table_div'));
+            
+    
+            // Establish dependencies, declaring that 'filter' drives 'pieChart',
+            // so that the pie chart will only display entries that are let through
+            // given the chosen slider range.
+            dashboard.bind(sliderCantidad, [grafica,tabla]);
+    
+            // Draw the dashboard.
+            dashboard.draw(data);
+          }
+        }
+      
+        
+      </script>
+      
 
 
     <footer id="dk-footer" class="dk-footer mt-5">
@@ -341,6 +424,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
   <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
     <script src="/scripts/ReporteVentasAnio.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  
+
 
 </body>
 
