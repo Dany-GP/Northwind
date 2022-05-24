@@ -81,6 +81,57 @@ namespace WebAPI_Nwind.Controllers
             return NoContent();
         }
 
+[HttpGet]
+        [Route("salesbot")]
+        public IEnumerable<Object> GetSalesBot5PerDate(DateTime startDate, DateTime endDate)
+        {
+            string prueba = "";
+          return _context.Suppliers
+              //  .Where(e => e.SupplierId == 1)
+                .Join(
+                    _context.Movements, 
+                    s => s.SupplierId,
+                    m => m.SupplierId,
+                    (s,m) => new {
+                        Proveedor = s.CompanyName,
+                        m.Date,
+                        IdMovimiento = m.MovementId,
+                    })
+                .Where(m => m.Date >= startDate
+                    && m.Date <= endDate
+                )
+                .Join(_context.Movementdetails, 
+                    sm => sm.IdMovimiento,
+                    md => md.MovementId,
+                    (sm, md) => new
+                    {
+                        Proveedor = sm.Proveedor,
+                        Cantidad = md.Quantity,
+                        ProductoID = md.ProductId
+                    }
+                ).Join(_context.Products, 
+                    smmd => smmd.ProductoID,
+                    p => p.ProductId,
+                    (smmd, p) => new
+                    {
+                        NombreProducto = p.ProductName,
+                        Proveedor = smmd.Proveedor,
+                        Cantidad = smmd.Cantidad,
+                        
+                    }
+                )
+                .GroupBy(s => new { s.Proveedor })
+                .Select(s => new
+                {
+                    Proveedor = s.Key.Proveedor,
+                    Ventas = s.Select(l=>l.Cantidad).Single()
+                })
+                .OrderBy(s => s.Ventas)
+                .Take(5)
+                .AsEnumerable();
+                
+                
+        }
         // POST: api/Suppliers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]

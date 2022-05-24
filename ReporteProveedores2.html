@@ -55,26 +55,24 @@
        
 
         <div class="row my-3 mb-5">
-            <div id="dashboard_div" class=" rounded col-7">
-                <!--Divs that will hold each control and chart-->
-                <div id="filter_div" class="bg-dar"></div>
-                <div id="chart_div" class="bg-dar"></div>
-            </div>
+            
             <div class="col-5">
-                <table id="table_id" class="table table-white">
+                <table id="table_id" class="table table-dark table-stripped text-white">
                     <thead>                
                         <th>Proveedor</th>
                         <th>Ventas</th>
                     </thead>
         
                 </table>
+                <br>
+                <br>
             <div id="graficaProveedores"></div>
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
             <script type="text/javascript">
                 google.charts.load("current", {packages:['corechart']});
                 google.charts.setOnLoadCallback(cargarDatos);
                 function cargarDatos(){
-                    fetch("https://localhost:7153/api/Products/salesbot?startDate=1996-05-05&endDate=1998-05-05")
+                    fetch("https://localhost:7153/api/Suppliers/salesbot?startDate=1996-05-05&endDate=1998-05-05")
                         .then(response => response.json())
                         .then(data => drawChart(data))
                         .catch(error => console.error('No se pudo.', error));

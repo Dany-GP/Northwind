@@ -72,7 +72,7 @@ function animarSignUp() {
 
 
 }
-fetch("https://localhost:7153/api/Products/salesbot?startDate=1996-05-05&endDate=1998-05-05")
+fetch("https://localhost:7153/api/Suppliers/salesbot?startDate=1996-05-05&endDate=1998-05-05")
 .then(response => response.json())
 .then(data => {
     console.log(data);

@@ -54,8 +54,8 @@ namespace WebAPI_Nwind.Controllers
                         m.Type
                     }
                 )
-                .Where(m => m.Date >= startDate
-                    && m.Date <= endDate
+                .Where(l => l.Date >= startDate
+                    && l.Date <= endDate
                     //&& m.Type == "VENTAS"
                 );
                 
