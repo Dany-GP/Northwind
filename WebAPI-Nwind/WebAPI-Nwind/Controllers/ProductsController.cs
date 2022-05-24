@@ -169,6 +169,53 @@ namespace WebAPI_Nwind.Controllers
 
         }
 
+        [HttpGet]
+        [Route("salesbytri/{year}/{tri}")]
+        public IEnumerable<Object> GetSalesByTri(int year, int tri)
+        {
+            int limSup = tri*3;
+            int limInf = limSup-2;
+            return _context.Products
+                .Join(
+                    _context.Movementdetails,
+                    p => p.ProductId,
+                    md => md.ProductId,
+                    (p, md) => new
+                    {
+                        Producto = p.ProductId,
+                        Name = p.ProductName,
+                        Movimiento = md.MovementId,
+                        Cantidad = md.Quantity,
+                    }
+                )
+                .Join(
+                    _context.Movements,
+                    md => md.Movimiento,
+                    m => m.MovementId,
+                    (md, m) => new
+                    {
+                        Poducto = md.Producto,
+                        Namee=md.Name,
+                        Anio = m.Date.Year,     
+                        Mes = m.Date.Month,                   
+                        Cantidad = md.Cantidad,
+                    }
+                )
+                .Where(m => m.Anio == year && m.Mes <= limSup && m.Mes >= limInf
+                )
+                .GroupBy(e => new {e.Namee})
+                .Select(e => new
+                {
+                    Producto = e.Key.Namee,
+                    Cantidad =  e.Sum(l=>l.Cantidad)
+
+                })
+                .OrderBy(e => e.Cantidad)
+                .Take(5)
+                .AsEnumerable();
+            ;
+}
+
         // GET: api/Products
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
