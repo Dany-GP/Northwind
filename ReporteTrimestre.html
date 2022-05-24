@@ -2,17 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <link rel="stylesheet" href="styles/index.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.1.4/css/rowGroup.dataTables.min.css">
+    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="/styles/ReporteVentasAnio.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link rel="shortcut icon" href="img/Logotipo-500x500-px.png">
+
+    <title>Reporte Trimestral</title>
 </head>
 
 <body class="bg-dark">
+
     <header class="d-flex align-items-center flex-wrap justify-content-center py-3 mb-4 border-bottom  bg-dark">
         <a href="index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
 
@@ -39,66 +46,145 @@
             <li class="nav-item"><a href="#info" class="nav-link txt-white">Acerca de</a></li>
             <li class="nav-item"><a href="ReporteVentasAnio.html" class="nav-link txt-white">Ventas</a></li>
             <li class="nav-item"><a href="ReporteProveedores.html" class="nav-link txt-white">Proveedores</a></li>
-            <li class="nav-item"><a href="ReporteTrimestre.html" class="nav-link txt-white">Ventas Trimestrales</a></li>
         </ul>
     </header>
 
-    <div class="vh-100 d-flex">
-        <div class="container d-flex  flex-column ">
-
-            <div class="row bg-dark my-auto ">
-
-                <div id="signInLogin" class="col-sm bg-dark mb-5 position-absolute top-25 w-50 rounded"
-                    style="left: 37%; height: 59.5% !important;">
-                    <form action="" class="d-flex flex-column  border-top-0 rounded">
-                        <h1 class="p-3 bg-dark text-center " style="color: #ff5001 !important;">Sign in to NorthWind
-                        </h1>
-                        <label class="form-label mx-2 d-none mostrar text-white" for="">Name</label>
-                        <div class="row mx-2 d-none mostrar">
-                            <input class="form-control" type="text" placeholder="Name Lastname">
-                        </div>
-                        <label class="form-label mx-2 text-white" for="">Email address</label>
-                        <div class="row mx-2">
-                            <input class="form-control" type="email" placeholder="name@example.com">
-                        </div>
-                        <label class="form-label mx-2 text-white" for="">Password</label>
-
-                        <div class="row mx-2">
-                            <input class="form-control mb-3" type="password" placeholder="password">
-                        </div>
-                        <div class="row mx-0">
-                            <a href="" class="noMostrar" style="color: #ff5001 !important;">Forgot password?</a>
-                        </div>
-
-                        <div class="row  w-100 ms-0 mb-4 my-2  border-top border-dark">
-                            <button type="button" class="btn my-3 mx-auto w-50 rounded-pill "
-                                style="background: #ff5001 !important;">Sign In</button>
-                        </div>
-                    </form>
-                </div>
-
-                <div id="auxSignUp" class="col-sm  bg-dark mb-3 overflow-visible position-absolute  top-25 w-25 rounded"
-                    style="left: 13%; height: 59.5% !important;">
-                    <form action="" class="d-flex bg-dark   flex-column  border-top-0 rounded">
-                        <h1 id="titleSign" class="mb-5 p-3  text-center" style="color: #ff5001 !important;">Create an
-                            account</h1>
-                        <p id="msg" class="text-white text-center mx-2">Enter your personal details and start journey
-                            with us</p>
-                        <div class="row w-100 ms-0 mb-0 my-2  ">
-                            <button type="button" id="btnSign" onclick="animarSignIn()"
-                                class="btn my-3 w-50 mx-auto rounded-pill" style="background: #ff5001 !important;">Sign
-                                Up</button>
-                        </div>
-                    </form>
-                </div>
+    <main>
+        <div class="container">
+            <div></div>
+            <div></div>
+            <h2>Dashboard - Reporte del Top 5 de productos por trimestres</h2>
+            <div id="dashboard_div">
+              <div class="row">
+                  <div class="col-md-6">
+                    <select name="" id="slcTrimestre" form="frmServicios"  class="form-control" required>
+                        <option value="/1" selected>Trimestre 1 (Enero - Marzo)</option>
+                        <option value="/2">Trimestre 2 (Abril - Junio)</option>
+                        <option value="/3">Trimestre 3 (Julio - Septiembre)</option>
+                        <option value="/4">Trimestre 4 (Octubre - Diciembre)</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <select name="" id="slcAnio" form="frmServicios"  class="form-control" required>
+                        <option value="/1996">Año: 1996</option>
+                        <option value="/1997" selected>Año: 1997</option>
+                    </select>
+                  </div>
+                  
+              </div>
+              </div>
+              <div class="col-md-6" id="filter_div"></div>
+              <div class="row" >
+                <div class="col-md-6" id="chart_div"></div>
+                <div class="col-md-6 " id="table_div" ></div>
+              </div>
             </div>
-
         </div>
-    </div>
+    
+      </main>
+      
+    
+      
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+        
+        var anio="/1997";
+        var trimestre="/2";
+    
+        cargarTodo();
+    
+        var selectTrimestre = document.getElementById('slcTrimestre');
+        selectTrimestre.addEventListener('change',function(){
+            trimestre=this.options[selectTrimestre.selectedIndex].value;
+            cargarTodo();
+        });
+    
+        var selectAnio = document.getElementById('slcAnio');
+        selectAnio.addEventListener('change',function(){
+            anio=this.options[selectAnio.selectedIndex].value;
+            cargarTodo();    
+        });
+    
+        //setTimeOut
+    
+        //animación en un div que se muestre y oculte
+        function cargarTodo(){
+          google.charts.load("current", {packages:['corechart','controls','table']});
+              google.charts.setOnLoadCallback(cargarDatos);
+              function cargarDatos(){
+                  //muestro
+                  fetch("https://localhost:7153/api/Products/salesbytri"+anio+trimestre)
+                      .then(response => response.json())
+                      .then(data => drawDashboard(data))
+                      .catch(error => {
+                          console.error('Ni pedo', error);
+                          //ocultar
+                    
+                    });   
+          }
+    
+          function drawDashboard(productos) {
+              //ocultar
+            var arreglo=[];
+            arreglo.push(["Producto","Cantidad"]);
+    
+            productos.forEach(e => {
+              arreglo.push([e.producto,e.cantidad]);
+            });
+          
+            var data = google.visualization.arrayToDataTable(arreglo);
+    
+        
+            var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
+    
+            var sliderCantidad = new google.visualization.ControlWrapper({
+              'controlType': 'NumberRangeFilter',
+              'containerId': 'filter_div',
+              'options': {
+                'filterColumnLabel': 'Cantidad',
+              }
+            });
+    
+            var grafica = new google.visualization.ChartWrapper({
+              'chartType': 'ColumnChart',
+              'containerId': 'chart_div',
+              'options': {
+                'width': 600,
+                'height': 600,
+                'pieSliceText': 'value',
+                'legend': 'center',
+                'colors': ['#035AA6']
+              }
+            });
+    
+            var tabla = new google.visualization.ChartWrapper({
+              'chartType': 'Table',
+              'containerId': 'table_div',
+              'options': {
+                'width': 700,
+                'height': 600
+              }
+            });
+    
+            var table = new google.visualization.Table(document.getElementById('table_div'));
+            
+    
+            // Establish dependencies, declaring that 'filter' drives 'pieChart',
+            // so that the pie chart will only display entries that are let through
+            // given the chosen slider range.
+            dashboard.bind(sliderCantidad, [grafica,tabla]);
+    
+            // Draw the dashboard.
+            dashboard.draw(data);
+          }
+        }
+      
+        
+      </script>
+      
 
 
-
-    <footer id="dk-footer" class="dk-footer">
+    <footer id="dk-footer" class="dk-footer mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-lg-4">
@@ -305,18 +391,45 @@
 
     </footer>
 
+    <div class="modal" id="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark">Error</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-dark">
+                    <p>Ha ocurrido un error</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-    <script src="scripts/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/abd9f14712.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.bootstrap5.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+    <script src="/scripts/ReporteVentasAnio.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  
+
+
 </body>
 
 </html>
